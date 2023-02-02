@@ -13,6 +13,18 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+//Popular Base de Dados
+using (var scope = app.Services.CreateScope())
+    try
+    {
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        Inicializacao.CriaDadosIniciais(db);
+    }
+    catch
+    {
+        throw;
+    }
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

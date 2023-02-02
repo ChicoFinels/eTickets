@@ -5,6 +5,8 @@
         Acao,
         Comedia,
         Drama,
-        Documentario
+        Documentario,
+        Aventura,
+        Faroeste
     }
 }
