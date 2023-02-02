@@ -9,6 +9,7 @@ namespace eTickets.Models
 
         public string Nome { get; set; }
         public string Biografia { get; set; }
+        [Display(Name = "Foto")]
         public string FotoPerfilURL { get; set; }
 
         //Relacionamentos
