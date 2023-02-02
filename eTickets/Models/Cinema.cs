@@ -10,5 +10,8 @@ namespace eTickets.Models
         public string Nome { get; set; }
         public string LogoURL { get; set; }
         public string Descricao { get; set; }
+
+        //Relacionamentos
+        public List<Filme> Filmes { get; set; }
     }
 }
