@@ -19,13 +19,13 @@ namespace eTickets.Data
                     new Cinema()
                     {
                         Nome = "Cinema 1",
-                        LogoURL = "https://images-workbench.99static.com/qi6RAnLoOZEkqkFLKeQ6NvWMNSI=/99designs-contests-attachments/32/32513/attachment_32513332",
+                        LogoURL = "https://yt3.googleusercontent.com/ytc/AL5GRJV0GPGA-HU8vpk2EWp186cfOiDiHVOqhXu4A5tY=s900-c-k-c0x00ffffff-no-rj",
                         Descricao = "Esta é a descrição do primeiro cinema"
                     },
                     new Cinema()
                     {
                         Nome = "Cinema 2",
-                        LogoURL = "https://images-workbench.99static.com/vFMtCcVlNTSW0FCnxJZL4CC-EoU=/99designs-contests-attachments/59/59821/attachment_59821453",
+                        LogoURL = "https://api.hatchwise.com/api/public/storage/assets/contests/entries/L967851-20140815214900.png",
                         Descricao = "Esta é a descrição do segundo cinema"
                     }
                 });

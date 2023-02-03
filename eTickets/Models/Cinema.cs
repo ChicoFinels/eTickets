@@ -6,9 +6,11 @@ namespace eTickets.Models
     {
         [Key]
         public int Id { get; set; }
-        
+
         public string Nome { get; set; }
+        [Display(Name = "Logo")]
         public string LogoURL { get; set; }
+        [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
         //Relacionamentos
