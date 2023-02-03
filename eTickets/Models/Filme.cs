@@ -10,8 +10,11 @@ namespace eTickets.Models
         public int Id { get; set; }
 
         public string Nome { get; set; }
+        [Display(Name = "Descrição")]
         public string Descricao { get; set; }
+        [Display(Name = "Preço")]
         public double Preco { get; set; }
+        [Display(Name = "Capa")]
         public string ImagemURL { get; set; }
         public DateTime DataInicial { get; set; }
         public DateTime DataFinal { get; set; }
