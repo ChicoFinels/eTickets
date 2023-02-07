@@ -5,31 +5,58 @@
 }
 
 <div class="row">
-    <div class="col-md-8 offset-md-2">
-        <table class="table">
-            <thead>
-                <tr class="text-center">
-                    <th>@Html.DisplayNameFor(model=>model.ImagemURL)</th>
-                    <th>@Html.DisplayNameFor(model=>model.Nome)</th>
-                    <th>@Html.DisplayNameFor(model=>model.Descricao)</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td class="align-middle text-center">
-                            <img src="@item.ImagemURL" alt="@item.Nome" style="width:250px; height:250px; object-fit:contain" />
-                        </td>
-                        <td class="align-middle text-center">
-                            @Html.DisplayFor(modelItem=>item.Nome)
-                        </td>
-                        <td class="align-middle text-center">
-                            @Html.DisplayFor(modelItem=>item.Descricao)
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 col-xxl-6 border-primary mb-3">
+            <div class="card mb-3" style="max-width:500px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @item.Nome
+                                    <a class="text-white float-end"><i class="bi bi-pencil-square"></i></a>
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="@item.ImagemURL" alt="@item.Nome" style="width:100%">
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <p class="card-text">@item.Descricao</p>
+                            <p class="card-text"><b>Cinema: </b>@item.Cinema.Nome</p>
+                            <p class="card-text"><b>Categoria: </b>@item.Categoria</p>
+                            <p class="card-text"><b>Data Inicial: </b>@item.DataInicial.ToString("dd/MM/yyyy")</p>
+                            <p class="card-text"><b>Data Final: </b>@item.DataFinal.ToString("dd/MM/yyyy")</p>
+                            <p class="card-text ">
+                                <b>Status: </b>
+                                @if (DateTime.Now > item.DataInicial && DateTime.Now < item.DataFinal)
+                                {
+                                    <span class="badge bg-success text-white">DISPONÍVEL</span>
+                                }
+                                else if (DateTime.Now > item.DataFinal)
+                                {
+                                    <span class="badge bg-danger text-white">TERMINADO</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-primary text-white">BREVEMENTE</span>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-footer">
+                            <p class="card-text">
+                                <a class="btn btn-outline-primary float-end"><i class="bi bi-eye-fill"></i> Detalhes</a>
+                                <a class="btn btn-success text-white"><i class="bi bi-cart-plus"></i> Adicionar ao carrinho(@item.Preco.ToString("c"))</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
