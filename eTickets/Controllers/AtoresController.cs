@@ -19,5 +19,11 @@ namespace eTickets.Controllers
             var atores = await _service.ObterTodos();
             return View(atores);
         }
+
+        //Get: Atores/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
