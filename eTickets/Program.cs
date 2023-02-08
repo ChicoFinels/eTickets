@@ -1,4 +1,5 @@
 using eTickets.Data;
+using eTickets.Data.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 var dbpath = Path.Combine(Directory.GetCurrentDirectory(), "AppData");
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection").Replace("[DataDirectory]", dbpath)));
+
+//Configuração dos Serviços
+builder.Services.AddScoped<IActorService, ActorService>();
 
 builder.Services.AddControllersWithViews();
 
