@@ -1,4 +1,5 @@
 ﻿using eTickets.Data;
+using eTickets.Data.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,16 +7,16 @@ namespace eTickets.Controllers
 {
     public class AtoresController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly IActorService _service;
 
-        public AtoresController(AppDbContext context)
+        public AtoresController(IActorService service)
         {
-            _context = context;
+            _service = service;
         }
 
         public async Task<IActionResult> Index()
         {
-            var atores = await _context.Atores.ToListAsync();
+            var atores = await _service.ObterTodos();
             return View(atores);
         }
     }

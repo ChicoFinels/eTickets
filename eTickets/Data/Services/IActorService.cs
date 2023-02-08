@@ -1,11 +1,11 @@
 ﻿using eTickets.Models;
 
-namespace eTickets.Data.Interfaces
+namespace eTickets.Data.Services
 {
-    public interface IAtores
+    public interface IActorService
     {
         //obter todos os atores
-        IEnumerable<Ator> ObterTodos();
+        Task<IEnumerable<Ator>> ObterTodos();
         //obter ator pelo ID
         Ator ObterPorId(int id);
         //adicionar ator
