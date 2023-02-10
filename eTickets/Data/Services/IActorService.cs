@@ -7,7 +7,7 @@ namespace eTickets.Data.Services
         //obter todos os atores
         Task<IEnumerable<Ator>> ObterTodos();
         //obter ator pelo ID
-        Ator ObterPorId(int id);
+        Task<Ator> ObterPorId(int id);
         //adicionar ator
         Task Adicionar(Ator ator);
         //alterar um ator existente

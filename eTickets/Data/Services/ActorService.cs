@@ -14,7 +14,7 @@ namespace eTickets.Data.Services
 
         public async Task Adicionar(Ator ator)
         {
-            _context.Atores.Add(ator);
+            await _context.Atores.AddAsync(ator);
             await _context.SaveChangesAsync();
         }
 
@@ -28,14 +28,15 @@ namespace eTickets.Data.Services
             throw new NotImplementedException();
         }
 
-        public Ator ObterPorId(int id)
+        public async Task<Ator> ObterPorId(int id)
         {
-            throw new NotImplementedException();
+            var resultado = await _context.Atores.FindAsync(id);
+            return resultado;
         }
 
         public async Task<IEnumerable<Ator>> ObterTodos()
         {
-            var resultado= await _context.Atores.ToListAsync();
+            var resultado = await _context.Atores.ToListAsync();
             return resultado;
         }
     }

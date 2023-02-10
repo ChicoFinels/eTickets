@@ -34,9 +34,17 @@ namespace eTickets.Controllers
             {
                 return View(ator);
             }
-
             await _service.Adicionar(ator);
             return RedirectToAction(nameof(Index));
+        }
+
+        //Get: Atores/Details/1
+        public async Task<IActionResult> Details(int id)
+        {
+            var ator = await _service.ObterPorId(id);
+            if (ator == null)
+                return RedirectToAction("Index");
+            return View(ator);
         }
     }
 }
