@@ -12,9 +12,10 @@ namespace eTickets.Data.Services
             _context = context;
         }
 
-        public void Adicionar(Ator ator)
+        public async Task Adicionar(Ator ator)
         {
-            throw new NotImplementedException();
+            _context.Atores.Add(ator);
+            await _context.SaveChangesAsync();
         }
 
         public void Apagar(int id)
