@@ -23,9 +23,11 @@ namespace eTickets.Data.Services
             throw new NotImplementedException();
         }
 
-        public Ator Atualizar(int id, Ator NovoAtor)
+        public async Task<Ator> Atualizar(int id, Ator NovoAtor)
         {
-            throw new NotImplementedException();
+            _context.Update(NovoAtor);
+            await _context.SaveChangesAsync();
+            return NovoAtor;
         }
 
         public async Task<Ator> ObterPorId(int id)

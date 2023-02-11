@@ -30,7 +30,7 @@ namespace eTickets.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([Bind("Nome, FotoPerfilURL, Biografia")] Ator ator)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(ator);
             }
@@ -43,8 +43,28 @@ namespace eTickets.Controllers
         {
             var ator = await _service.ObterPorId(id);
             if (ator == null)
-                return RedirectToAction("Index");
+                return View("NotFound");
             return View(ator);
+        }
+
+        //Get: Atores/Edit
+        public async Task<IActionResult> Edit(int id)
+        {
+            var ator = await _service.ObterPorId(id);
+            if (ator == null)
+                return View("NotFound");
+            return View(ator);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, [Bind("Id, Nome, FotoPerfilURL, Biografia")] Ator ator)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(ator);
+            }
+            await _service.Atualizar(id, ator);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

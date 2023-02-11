@@ -11,7 +11,7 @@ namespace eTickets.Data.Services
         //adicionar ator
         Task Adicionar(Ator ator);
         //alterar um ator existente
-        Ator Atualizar(int id, Ator NovoAtor);
+        Task<Ator> Atualizar(int id, Ator NovoAtor);
         //apagar ator
         void Apagar(int id);
     }

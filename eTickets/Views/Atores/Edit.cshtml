@@ -1,0 +1,69 @@
+﻿@model Ator
+
+@{
+    ViewData["Title"] = "Atualizar ator";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Atualizar ator</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger">
+                    </div>
+                    <div class="form-group text-center">
+                        <img id="FotoPerfilPreview" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Foto URL</label>
+                        <input asp-for="FotoPerfilURL" class="form-control" />
+                        <span asp-validation-for="FotoPerfilURL" class="text-danger "></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Nome" class="col-form-label"></label>
+                        <input asp-for="Nome" class="form-control" />
+                        <span asp-validation-for="Nome" class="text-danger "></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Biografia" class="col-form-label"></label>
+                        <input asp-for="Biografia" class="form-control" />
+                        <span asp-validation-for="Biografia" class="text-danger "></span>
+                    </div>
+                    <div class="form-group col-form-label">
+                        <input type="submit" value="Atualizar" class="btn btn-outline-success float-end" />
+                        <a class="btn btn-outline-secondary" asp-action="Index">Mostrar Todos</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var output = document.getElementById('FotoPerfilPreview');
+            output.src = $("#FotoPerfilURL").val();
+            if ($("#FotoPerfilURL").val() != 0) {
+                $("img").css({ "width": "150px", "height": "150px", "object-position": "0% 15%", "object-fit": "cover" });
+            }
+            else {
+                $("img").css({ "width": "0px", "height": "0px" });
+            }
+        })
+
+        $("#FotoPerfilURL").on("change", function () {
+            var output = document.getElementById('FotoPerfilPreview');
+            output.src = $(this).val();
+            if ($(this).val() != 0) {
+                $("img").css({ "width": "150px", "height": "150px", "object-position": "0% 15%", "object-fit": "cover" });
+            }
+            else {
+                $("img").css({ "width": "0px", "height": "0px" });
+            }
+        });
+    </script>
+}
