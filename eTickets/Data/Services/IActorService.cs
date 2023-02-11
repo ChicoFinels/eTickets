@@ -13,6 +13,6 @@ namespace eTickets.Data.Services
         //alterar um ator existente
         Task<Ator> Atualizar(int id, Ator NovoAtor);
         //apagar ator
-        void Apagar(int id);
+        Task Apagar(int id);
     }
 }

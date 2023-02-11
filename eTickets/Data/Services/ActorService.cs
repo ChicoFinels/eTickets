@@ -18,9 +18,11 @@ namespace eTickets.Data.Services
             await _context.SaveChangesAsync();
         }
 
-        public void Apagar(int id)
+        public async Task Apagar(int id)
         {
-            throw new NotImplementedException();
+            var ator = await _context.Atores.FindAsync(id);
+            _context.Atores.Remove(ator);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Ator> Atualizar(int id, Ator NovoAtor)
