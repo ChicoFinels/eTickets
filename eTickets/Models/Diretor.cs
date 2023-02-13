@@ -1,18 +1,23 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using eTickets.Data.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace eTickets.Models
 {
-    public class Diretor
+    public class Diretor : IEntityBase
     {
         [Key]
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Campo obrigatório")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Nome inválido")]
         public string Nome { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório")]
         public string Biografia { get; set; }
         [Display(Name = "Foto")]
+        [Required(ErrorMessage = "Campo obrigatório")]
         public string FotoPerfilURL { get; set; }
 
         //Relacionamentos
-        public List<Filme> Filmes { get; set; }
+        public List<Filme>? Filmes { get; set; }
     }
 }
