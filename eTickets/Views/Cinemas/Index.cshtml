@@ -29,13 +29,17 @@
                             @Html.DisplayFor(modelItem=>item.Descricao)
                         </td>
                         <td class="align-middle text-center">
-                            <a class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i>Editar</a>
-                            <a class="btn btn-outline-info"><i class="bi bi-eye"></i>Detalhes</a>
-                            <a class="btn btn-danger"><i class="bi bi-trash"></i>Apagar</a>
+                            <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i>Editar</a>
+                            <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-eye"></i>Detalhes</a>
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"></i>Apagar</a>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
+</div>
+
+<div class="text-white" style="position:fixed; bottom:25px; right:25px; z-index:1;">
+    <a asp-action="Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Adicionar Novo</a>
 </div>

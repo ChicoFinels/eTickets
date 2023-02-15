@@ -13,6 +13,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 //Configuração dos Serviços
 builder.Services.AddScoped<IActorService, ActorService>();
 builder.Services.AddScoped<IDiretorService, DiretorService>();
+builder.Services.AddScoped<ICinemaService, CinemaService>();
 
 builder.Services.AddControllersWithViews();
 
