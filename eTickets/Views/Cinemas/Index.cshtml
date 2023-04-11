@@ -40,6 +40,4 @@
     </div>
 </div>
 
-<div class="text-white" style="position:fixed; bottom:25px; right:25px; z-index:1;">
-    <a asp-action="Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Adicionar Novo</a>
-</div>
+@await Html.PartialAsync("_CreateItem", "Cinemas")
