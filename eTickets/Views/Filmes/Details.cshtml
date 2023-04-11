@@ -1,0 +1,86 @@
+﻿@model Filme
+
+@{
+    ViewData["Title"] = "Detalhes do Filme";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <div class="card mb-12">
+            <div class="row g-0">
+                <div class="col-md-12">
+                    <div class="card-header text-white bg-info">
+                        <p class="card-text">
+                            <h5 class="card-title">
+                                @Model.Nome
+                            </h5>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <img src="@Model.ImagemURL" width="100%" alt="@Model.Nome">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <p class="card-text">@Model.Descricao</p>
+                        <p class="card-text">
+                            <b>Cinema: </b>
+                            <a asp-controller="Cinemas" asp-action="Details" asp-route-id="@Model.CinemaId">
+                                @Model.Cinema.Nome
+                            </a>
+                        </p>
+                        <p class="card-text">
+                            <b>Diretor: </b>
+                            <a asp-controller="Diretores" asp-action="Details" asp-route-id="@Model.DiretorId">
+                                @Model.Diretor.Nome
+                            </a>
+                        </p>
+                        <p class="card-text"><b>Categoria: </b>@Model.Categoria</p>
+                        <p class="card-text"><b>Data Inicial: </b>@Model.DataInicial.ToString("dd/MM/yyyy")</p>
+                        <p class="card-text"><b>Data Final: </b>@Model.DataFinal.ToString("dd/MM/yyyy")</p>
+                        <p class="card-text ">
+                            <b>Status: </b>
+                            @if (DateTime.Now >= Model.DataInicial && DateTime.Now <= Model.DataFinal)
+                            {
+                                <span class="badge bg-success text-white">DISPONÍVEL</span>
+                            }
+                            else if (DateTime.Now > Model.DataFinal)
+                            {
+                                <span class="badge bg-danger text-white">TERMINADO</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-primary text-white">BREVEMENTE</span>
+                            }
+                        </p>
+                        <p class="card-text">
+                            <b>Atores: </b>
+                            <hr />
+                            <div class="row">
+                                @foreach (var actor in Model.Atores_Filmes)
+                                {
+                                    <div class="col text-center">
+                                        <img class="border-info rounded-circle" src="@actor.Ator.FotoPerfilURL" style="width:150px; height:150px; object-position:0% 15%; object-fit:cover" />
+                                        <br />
+                                        <a asp-controller="Atores" asp-action="Details" asp-route-id="@actor.AtorId">@actor.Ator.Nome</a>
+                                    </div>
+                                }
+                            </div>
+                        </p>
+
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card-footer">
+                        <p class="card-text">
+                            <a class="btn btn-outline-primary float-right" asp-action="Index">
+                                Mostrar Todos
+                            </a>
+                            <a class="btn btn-success text-white"><i class="bi bi-cart-plus"></i> Adicionar ao carrinho (@Model.Preco.ToString("c"))</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
