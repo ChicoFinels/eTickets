@@ -12,7 +12,10 @@
                     <th>@Html.DisplayNameFor(model=>model.FotoPerfilURL)</th>
                     <th>@Html.DisplayNameFor(model=>model.Nome)</th>
                     <th>@Html.DisplayNameFor(model=>model.Biografia)</th>
-                    <th>Ações</th>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <th>Ações</th>
+                    }
                 </tr>
             </thead>
             <tbody>
@@ -29,9 +32,14 @@
                             @Html.DisplayFor(modelItem=>item.Biografia)
                         </td>
                         <td class="align-middle text-center">
-                            <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i>Editar</a>
-                            <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-eye"></i>Detalhes</a>
-                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"></i>Apagar</a>
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                                <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i>Editar</a>
+
+                                <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-eye"></i>Detalhes</a>
+
+                                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"></i>Apagar</a>
+                            }
                         </td>
                     </tr>
                 }

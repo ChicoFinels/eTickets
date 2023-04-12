@@ -1,6 +1,10 @@
 using eTickets.Data;
 using eTickets.Data.Services;
+using eTickets.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +19,13 @@ builder.Services.AddScoped<IActorService, ActorService>();
 builder.Services.AddScoped<IDiretorService, DiretorService>();
 builder.Services.AddScoped<ICinemaService, CinemaService>();
 builder.Services.AddScoped<IFilmeService, FilmeService>();
+
+builder.Services.AddIdentity<Utilizador, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+builder.Services.AddMemoryCache();
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+});
 
 builder.Services.AddControllersWithViews();
 
@@ -45,10 +56,15 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Filmes}/{action=Index}/{id?}");
+
+Inicializacao.SeedUsersAndRolesAsync(app).Wait();
 
 app.Run();

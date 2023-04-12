@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eTickets.Data;
 
@@ -11,9 +12,11 @@ using eTickets.Data;
 namespace eTickets.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230412101905_Utilizador")]
+    partial class Utilizador
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -178,7 +181,7 @@ namespace eTickets.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Atores", (string)null);
+                    b.ToTable("Atores");
                 });
 
             modelBuilder.Entity("eTickets.Models.Ator_Filme", b =>
@@ -193,7 +196,7 @@ namespace eTickets.Migrations
 
                     b.HasIndex("FilmeId");
 
-                    b.ToTable("Atores_Filmes", (string)null);
+                    b.ToTable("Atores_Filmes");
                 });
 
             modelBuilder.Entity("eTickets.Models.Cinema", b =>
@@ -219,7 +222,7 @@ namespace eTickets.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cinemas", (string)null);
+                    b.ToTable("Cinemas");
                 });
 
             modelBuilder.Entity("eTickets.Models.Diretor", b =>
@@ -245,7 +248,7 @@ namespace eTickets.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Diretores", (string)null);
+                    b.ToTable("Diretores");
                 });
 
             modelBuilder.Entity("eTickets.Models.Filme", b =>
@@ -292,7 +295,7 @@ namespace eTickets.Migrations
 
                     b.HasIndex("DiretorId");
 
-                    b.ToTable("Filmes", (string)null);
+                    b.ToTable("Filmes");
                 });
 
             modelBuilder.Entity("eTickets.Models.Utilizador", b =>
