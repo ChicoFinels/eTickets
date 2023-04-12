@@ -107,5 +107,18 @@ namespace eTickets.Controllers
             await _service.UpdateMovieAsync(movie);
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Pesquisar(string search)
+        {
+            var allMovies = await _service.ObterTodos(n => n.Cinema);
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                var filteredResult = allMovies.Where(n => n.Nome.ToLower().Contains(search.ToLower()) || n.Descricao.ToLower().Contains(search.ToLower())).ToList();
+                return View("Index", filteredResult);
+            }
+
+            return View("Index", allMovies);
+        }
     }
 }
